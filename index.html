@@ -3,127 +3,78 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Thirst Trap </title>
+    <title>Thirst Trap</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Amarante&family=Arapey:ital@0;1&family=Faculty+Glyphic&family=Mulish:ital,wght@0,200..1000;1,200..1000&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Spicy+Rice&display=swap" rel="stylesheet">
 </head>
+
 <body>
-    <h1> Thirst Trap </h1>
-    <h2> Thirsty but broke? Hunt for your happy hour here. </h2>
-    <br>
-   
-    <div class="topnav">
-        <a class="active" href="#home">Home</a>
-        <a href="#location">By Location</a>
-        <a href="#timing">By Timing</a>
-      </div>
+    <header>
+        <h1>THIRST TRAP</h1>
+        <h2>Thirsty but broke? Hunt for your happy hour here.</h2>
+    </header>
+    <main>
+        <section id="filters">
+            <h3>Filter Bars</h3>
 
-      <div class="recommendation" id = "lazy lizard">
-       <h3> Lazy Lizard Sixth Avenue </h3>
-        <table>
-            <tr>
-              <td> <strong> Happy Hours: </strong> </td>
-              <td> 3pm-8pm daily </td>
-            </tr>
-            <tr>
-              <td> <strong> Type of Drinks: </strong> </td>
-              <td> Beer </td>
-            </tr>
-            <tr>
-                <td><strong> Price Range: </strong></td>
-                <td> $11-13++ </td>
-              </tr>
-              <tr>
-                <td><strong> Nearest MRT: </strong> </td>
-                <td> <a href="https://www.google.com/maps/place/Lazy+Lizard+-+Sixth+Avenue/@1.3312023,103.7951531,17z/data=!3m2!4b1!5s0x31da109ed0c5bae9:0xa72012536b1e2de0!4m6!3m5!1s0x31da109ed6990cc1:0x3e3fb7d25ec9fff5!8m2!3d1.3312023!4d103.7951531!16s%2Fg%2F1txflnr3?entry=ttu&g_ep=EgoyMDI0MTAyOS4wIKXMDSoASAFQAw%3D%3D" target="_blank"> Sixth Avenue </a> </td>
-              </tr>
-          </table>
-      </div>
-    
-      <div class="recommendation" id = "chico loco">
-        <h3>Chico Loco</h3>
-         <table>
-             <tr>
-               <td> <strong> Happy Hours: </strong> </td>
-               <td> Mon-Thurs, 12pm-7pm </td>
-             </tr>
-             <tr>
-               <td> <strong> Type of Drinks: </strong> </td>
-               <td> Beer, Wine, Margaritas </td>
-             </tr>
-             <tr>
-                 <td> Price Range: </td>
-                 <td> $11-13++ </td>
-               </tr>
-               <tr>
-                 <td> Nearest MRT: </td>
-                 <td> <a href = "https://www.google.com/maps/place/Chico+Loco+(Amoy+Street)/@1.2816556,103.8447769,17z/data=!3m1!4b1!4m6!3m5!1s0x31da19085b6a6645:0xcd1cc3401842e86f!8m2!3d1.2816502!4d103.8473518!16s%2Fg%2F11fl095s72?entry=ttu&g_ep=EgoyMDI0MTAyOS4wIKXMDSoASAFQAw%3D%3D" target = "_blank"> Telok Ayer </a> </td>
-               </tr>
-           </table>
-       </div>
+            <label for="location">Location:</label>
+            <select id="location">
+                <option value="">All</option>
+                <option value="north">North</option>
+                <option value="south">South</option>
+                <option value="east">East</option>
+                <option value="west">West</option>
+                <option value="central">Central</option>
+            </select>
 
-       <div class="recommendation" id = "offtrack">
-        <h3> Offtrack </h3>
-        <table>
-            <tr>
-              <td> <strong> Happy Hours: </strong> </td>
-              <td> 5pm-7pm daily </td>
-            </tr>
-            <tr>
-              <td> <strong> Type of Drinks: </strong> </td>
-              <td> Cocktails, wines, beers </td>
-            </tr>
-            <tr>
-                <td><strong> Price Range: </strong> </td>
-                <td> $12-16++ </td>
-              </tr>
-              <tr>
-                <td><strong>Nearest MRT:</strong> </td>
-                <td><a href="https://www.google.com/maps/place/Offtrack/@1.2925311,103.8359716,15z/data=!3m1!5s0x31da190afc33dc93:0x82c4b8b1f97d67d3!4m6!3m5!1s0x31da19963cdecdf7:0x1f01bc4d6a92b7df!8m2!3d1.2869115!4d103.847206!16s%2Fg%2F11smcq6j4s?entry=ttu&g_ep=EgoyMDI0MTAyOS4wIKXMDSoASAFQAw%3D%3D" target ="_blank"> Clarke Quay </a> </td>
-              </tr>
-          </table>
-       </div>
+            <label for="startTime">Starting Happy Hour Time:</label>
+            <select id="startTime">
+                <option value="">Any</option>
+                <option value="16:00">4:00 PM</option>
+                <option value="17:00">5:00 PM</option>
+                <option value="18:00">6:00 PM</option>
+                <option value="19:00">7:00 PM</option>
+                <option value="20:00">8:00 PM</option>
+            </select>
 
-       <div class="recommendation" id = "southbridge">
-        <h3> Southbridge </h3>
-        <table>
-            <tr>
-              <td> <strong> Happy Hours: </strong> </td>
-              <td> 5pm-8pm on Mon-Thurs, all day on Sun (excluding Eve of and Public Holidays) </td>
-            </tr>
-            <tr>
-              <td> <strong> Type of Drinks: </strong> </td>
-              <td> Spirits, wines, beers </td>
-            </tr>
-            <tr>
-                <td><strong> Price Range: </strong> </td>
-                <td> $10-20++ </td>
-              </tr>
-              <tr>
-                <td><strong>Nearest MRT:</strong> </td>
-                <td><a href="https://www.google.com/maps/place/Southbridge/@1.2884579,103.8466922,17z/data=!3m1!4b1!4m6!3m5!1s0x31da190a12e845cb:0x53225213f4c2325e!8m2!3d1.2884525!4d103.8492671!16s%2Fg%2F11b6dnrqqp?entry=ttu&g_ep=EgoyMDI0MTAyOS4wIKXMDSoASAFQAw%3D%3D" target ="_blank"> Clarke Quay </a> </td>
-              </tr>
-          </table>
-       </div>
-     
-       <div class="recommendation" id = "bones 'n barrels">
-        <h3> Bones 'n Barrels </h3>
-        <table>
-            <tr>
-              <td> <strong> Happy Hours: </strong> </td>
-              <td> 11.30am-8pm on Mon-Fri </td>
-            </tr>
-            <tr>
-              <td> <strong> Type of Drinks: </strong> </td>
-              <td> Spirits, wines, beers </td>
-            </tr>
-            <tr>
-                <td><strong> Price Range: </strong> </td>
-                <td> $15++ (1 for 1) </td>
-              </tr>
-              <tr>
-                <td><strong> Nearest MRT: </strong> </td>
-                <td><a href="https://www.google.com/maps/place/Bones+'n+Barrels+Alexandra/@1.2773615,103.7971874,17z/data=!3m2!4b1!5s0x31da1bc7110d8683:0x648a87e0bf359e79!4m6!3m5!1s0x31da1b04cbee1811:0x65f904aa447c3984!8m2!3d1.2773561!4d103.7997623!16s%2Fg%2F11fj2pz2v1?entry=ttu&g_ep=EgoyMDI0MTAyOS4wIKXMDSoASAFQAw%3D%3D" target ="_blank"> Pasir Panjang/ Labrador Park </a> </td>
-              </tr>
-          </table>
-       </div>
+            <label for="endTime">Ending Happy Hour Time:</label>
+            <select id="endTime">
+                <option value="">Any</option>
+                <option value="18:00">6:00 PM</option>
+                <option value="19:00">7:00 PM</option>
+                <option value="20:00">8:00 PM</option>
+                <option value="21:00">9:00 PM</option>
+                <option value="22:00">10:00 PM</option>
+            </select>
+
+            <label for="drink">Drink Type:</label>
+            <select id="drink">
+                <option value="">All</option>
+                <option value="beer">Beer</option>
+                <option value="cocktails">Cocktails</option>
+                <option value="wine">Wine</option>
+            </select>
+
+            <label for="priceRange">Price Range:</label>
+            <select id="priceRange">
+                <option value="">Any</option>
+                <option value="low">Low ($5-$10)</option>
+                <option value="medium">Medium ($11-$20)</option>
+                <option value="high">High ($21+)</option>
+            </select>
+
+            <button id="filterButton">Filter</button>
+        </section>
+
+        <section id="bar-list">
+            <h2>Bars</h2>
+            <ul id="bars">
+                <li><strong>Sample Bar</strong><br>Location: Central<br>Address: 123 Example Street<br>Happy Hour: 16:00 - 18:00<br>Drinks: Beer, Cocktails<br>Price Range: Low</li>
+            </ul>
+        </section>
+    </main>
+    <script src="script.js"></script>
 </body>
 </html>
