@@ -44,6 +44,17 @@ h2 {
     font-size: 1.5rem; 
 }
 
+h3 {
+    font-style:oblique; 
+    font-size: 1.5rem; 
+}
+
+h4 {
+    font-size: larger;
+    font-size: 1.5rem; 
+    text-align: center;
+}
+
 /* Main Layout */
 main {
     display: flex;
@@ -53,12 +64,18 @@ main {
     margin: 2rem 0;
 }
 
+p {
+    line-height: 18px;
+    margin-bottom: 2px;
+
+}
+
 /* Filters Section */
 #filters {
     flex: 1;
-    max-width: 30%;
+    max-width: 25%;
     background-color: white;
-    padding: 1.5rem;
+    padding: 1rem;
     border-radius: 12px;
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
     display: flex;
@@ -101,6 +118,74 @@ main {
     transform: scale(0.98);
 }
 
+/* Style the fieldset to align with dropdown lists */
+fieldset {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px 10px;
+    margin-bottom: 15px;
+    margin-top: 0px;
+    background-color: #fff;
+}
+
+/* Legend for the fieldset */
+fieldset legend {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+    padding-top: 0px;
+    margin-bottom: 5px; /* Reduce gap below legend */
+}
+
+/* Checkbox container for alignment */
+fieldset label {
+    display: flex;
+    align-items: center; /* Align text with checkboxes */
+    font-size: 14px;
+    color: #555;
+    margin-top: 0px;
+    margin-bottom: 2px; /* Reduce spacing between options */
+    cursor: pointer;
+}
+
+/* Styling the checkboxes */
+fieldset input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none; /* For Safari */
+    width: 16px; /* Smaller size for better alignment */
+    height: 16px;
+    border: 2px solid #aaa;
+    border-radius: 4px;
+    margin-right: 6px; /* Ensure text isn't too far from the checkbox */
+    outline: none;
+    cursor: pointer;
+    background-color: #fff;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+/* Checked state */
+fieldset input[type="checkbox"]:checked {
+    background-color: #4CAF50;
+    border-color: #4CAF50;
+    position: relative;
+}
+
+/* Checkbox icon for checked state */
+fieldset input[type="checkbox"]:checked::after {
+    content: "✔";
+    font-size: 10px;
+    color: white;
+    position: absolute;
+    top: 0px;
+    left: 2px;
+}
+
+/* On hover */
+fieldset input[type="checkbox"]:hover {
+    border-color: #4CAF50;
+}
+
+
 /* Bars List Section */
 #bar-list {
     flex: 2;
@@ -113,6 +198,7 @@ main {
     margin-bottom: 1.5rem;
     color: #ff8364;
 }
+
 
 /* Grid Layout for Bars */
 #bars {
@@ -137,8 +223,8 @@ main {
 }
 
 #bars strong {
-    font-family: "Faculty Glyphic", sans-serif; 
-    font-size: 1.25rem;
+    font-weight: bold; 
+    font-size: 1rem;
     color: black;
 }
 
@@ -152,3 +238,4 @@ main {
         max-width: 100%;
     }
 }
+

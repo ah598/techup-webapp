@@ -11,11 +11,12 @@
 </head>
 <body>
     <header>
-        <h1>Thirst Trap</h1>
+        <h1>THIRST TRAP</h1>
+        <h2>For when you're thirsty but broke</h2>
     </header>
     <main>
         <section id="filters">
-            <h2>Filter Bars</h2>
+            <h3>Hunt for your Happy Hour here:</h3>
 
             <!-- Location Filter -->
             <label for="location">Location:</label>
@@ -32,11 +33,16 @@
             <label for="startTime">Starting Happy Hour Time:</label>
             <select id="startTime">
                 <option value="">Any</option>
+                <option value="12:00">12:00 PM</option>
+                <option value="13:00">1:00 PM</option>
+                <option value="14:00">2:00 PM</option>
+                <option value="15:00">3:00 PM</option>
                 <option value="16:00">4:00 PM</option>
                 <option value="17:00">5:00 PM</option>
                 <option value="18:00">6:00 PM</option>
                 <option value="19:00">7:00 PM</option>
                 <option value="20:00">8:00 PM</option>
+                <option value="21:00">9:00 PM</option>
             </select>
 
             <!-- Ending Happy Hour Time Filter -->
@@ -48,16 +54,19 @@
                 <option value="20:00">8:00 PM</option>
                 <option value="21:00">9:00 PM</option>
                 <option value="22:00">10:00 PM</option>
+                <option value="23:00">11:00 PM</option>
+                <option value="00:00">12:00 AM</option>
+                <option value="01:00">1:00 AM</option>
             </select>
 
             <!-- Drink Type Filter -->
             <label for="drink">Drink Type:</label>
             <select id="drink">
                 <option value="">All</option>
-                <option value="beer">Beers</option>
+                <option value="beers">Beers</option>
                 <option value="cocktails">Cocktails</option>
-                <option value="wine">Wines</option>
-                <option value="wine">Spirits</option>
+                <option value="wines">Wines</option>
+                <option value="spirits">Spirits</option>
             </select>
 
             <!-- Price Range Filter -->
@@ -66,12 +75,12 @@
                 <option value="">Any</option>
                 <option value="low">Low (Less than $15 per drink)</option>
                 <option value="medium">Medium ($15-$20 per drink)</option>
-                <option value="high">High ($21+)</option>
+                <option value="high">High (More than $20 per drink)</option>
             </select>
 
             <!-- Days Filter -->
             <fieldset>
-                <legend>Days Available:</legend>
+                <legend>Days Available:</legend><br> 
                 <label><input type="checkbox" value="Monday" class="day"> Monday</label><br>
                 <label><input type="checkbox" value="Tuesday" class="day"> Tuesday</label><br>
                 <label><input type="checkbox" value="Wednesday" class="day"> Wednesday</label><br>
@@ -82,19 +91,21 @@
             </fieldset>
 
             <button id="filterButton">Filter</button>
+            <!-- Add this new reset button -->
+            <button id="resetButton">Reset Filters</button>
         </section>
 
         <section id="bar-list">
             <ul id="bars">
                 <!-- Sample Bars -->
                 <li data-days="Monday,Tuesday,Wednesday">
-                    <h3>Sample Bar 1<h3><br> 
-                        <strong>Location: </strong> Central<br>
-                        Address: 123 Example Street<br>
-                        Happy Hour: 16:00 - 18:00<br>
-                        Drinks: Beer, Cocktails<br>
-                        Price Range: Low<br>
-                        Days: Monday, Tuesday, Wednesday
+                    <h4>Sample Bar 1</h4><br> 
+                        <strong>Location:</strong> Central<br>
+                        <strong>Address:</strong> 123 Example Street<br>
+                        <strong>Happy Hour:</strong> 16:00 - 18:00<br>
+                        <strong>Days: </strong>Monday, Tuesday, Wednesday <br>
+                        <strong>Drinks: </strong>Beers, Cocktails<br>
+                        <strong>Price Range:</strong> Low<br>
                 </li>
                 <li data-days="Friday,Saturday">
                     <strong>Sample Bar 2</strong><br>Location: East<br>Address: 456 Sample Rd.<br>Happy Hour: 18:00 - 20:00<br>Drinks: Cocktails, Wine<br>Price Range: Medium<br>Days: Friday, Saturday
