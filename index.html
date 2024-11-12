@@ -7,18 +7,17 @@
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Amarante&family=Arapey:ital@0;1&family=Faculty+Glyphic&family=Mulish:ital,wght@0,200..1000;1,200..1000&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Spicy+Rice&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Arapey:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Faculty+Glyphic&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 </head>
-
 <body>
     <header>
-        <h1>THIRST TRAP</h1>
-        <h2>Thirsty but broke? Hunt for your happy hour here.</h2>
+        <h1>Thirst Trap</h1>
     </header>
     <main>
         <section id="filters">
-            <h3>Filter Bars</h3>
+            <h2>Filter Bars</h2>
 
+            <!-- Location Filter -->
             <label for="location">Location:</label>
             <select id="location">
                 <option value="">All</option>
@@ -29,6 +28,7 @@
                 <option value="central">Central</option>
             </select>
 
+            <!-- Starting Happy Hour Time Filter -->
             <label for="startTime">Starting Happy Hour Time:</label>
             <select id="startTime">
                 <option value="">Any</option>
@@ -39,6 +39,7 @@
                 <option value="20:00">8:00 PM</option>
             </select>
 
+            <!-- Ending Happy Hour Time Filter -->
             <label for="endTime">Ending Happy Hour Time:</label>
             <select id="endTime">
                 <option value="">Any</option>
@@ -49,29 +50,56 @@
                 <option value="22:00">10:00 PM</option>
             </select>
 
+            <!-- Drink Type Filter -->
             <label for="drink">Drink Type:</label>
             <select id="drink">
                 <option value="">All</option>
-                <option value="beer">Beer</option>
+                <option value="beer">Beers</option>
                 <option value="cocktails">Cocktails</option>
-                <option value="wine">Wine</option>
+                <option value="wine">Wines</option>
+                <option value="wine">Spirits</option>
             </select>
 
+            <!-- Price Range Filter -->
             <label for="priceRange">Price Range:</label>
             <select id="priceRange">
                 <option value="">Any</option>
-                <option value="low">Low ($5-$10)</option>
-                <option value="medium">Medium ($11-$20)</option>
+                <option value="low">Low (Less than $15 per drink)</option>
+                <option value="medium">Medium ($15-$20 per drink)</option>
                 <option value="high">High ($21+)</option>
             </select>
+
+            <!-- Days Filter -->
+            <fieldset>
+                <legend>Days Available:</legend>
+                <label><input type="checkbox" value="Monday" class="day"> Monday</label><br>
+                <label><input type="checkbox" value="Tuesday" class="day"> Tuesday</label><br>
+                <label><input type="checkbox" value="Wednesday" class="day"> Wednesday</label><br>
+                <label><input type="checkbox" value="Thursday" class="day"> Thursday</label><br>
+                <label><input type="checkbox" value="Friday" class="day"> Friday</label><br>
+                <label><input type="checkbox" value="Saturday" class="day"> Saturday</label><br>
+                <label><input type="checkbox" value="Sunday" class="day"> Sunday</label><br>
+            </fieldset>
 
             <button id="filterButton">Filter</button>
         </section>
 
         <section id="bar-list">
-            <h2>Bars</h2>
             <ul id="bars">
-                <li><strong>Sample Bar</strong><br>Location: Central<br>Address: 123 Example Street<br>Happy Hour: 16:00 - 18:00<br>Drinks: Beer, Cocktails<br>Price Range: Low</li>
+                <!-- Sample Bars -->
+                <li data-days="Monday,Tuesday,Wednesday">
+                    <h3>Sample Bar 1<h3><br> 
+                        <strong>Location: </strong> Central<br>
+                        Address: 123 Example Street<br>
+                        Happy Hour: 16:00 - 18:00<br>
+                        Drinks: Beer, Cocktails<br>
+                        Price Range: Low<br>
+                        Days: Monday, Tuesday, Wednesday
+                </li>
+                <li data-days="Friday,Saturday">
+                    <strong>Sample Bar 2</strong><br>Location: East<br>Address: 456 Sample Rd.<br>Happy Hour: 18:00 - 20:00<br>Drinks: Cocktails, Wine<br>Price Range: Medium<br>Days: Friday, Saturday
+                </li>
+                <!-- More bars can be added here -->
             </ul>
         </section>
     </main>

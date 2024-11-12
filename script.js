@@ -1,104 +1,107 @@
-const bars = [
-    { 
-        name: "The Beer Garden", 
-        location: "north", 
-        startTime: "17:00", 
-        endTime: "19:00", 
-        drinks: ["Beer", "Cocktails"],
-        priceRange: "low",
-        address: "123 North Street, Springfield" 
+// Sample bar data
+const barsData = [
+    {
+        name: "Lazy Lizard Sixth Avenue",
+        location: "West",
+        address: "2 Sixth Ave, Singapore 276470",
+        happyHourStart: "15:00",
+        happyHourEnd: "20:00",
+        drinks: ["Beers"],
+        priceRange: "Low",
+        days: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
     },
-    { 
-        name: "Wine & Dine", 
-        location: "central", 
-        startTime: "18:00", 
-        endTime: "20:00", 
-        drinks: ["Wine"],
-        priceRange: "high",
-        address: "456 Central Avenue, Springfield" 
+    {
+        name: "Sample Bar 2",
+        location: "East",
+        address: "456 Sample Rd.",
+        happyHourStart: "18:00",
+        happyHourEnd: "20:00",
+        drinks: ["Cocktails", "Wines"],
+        priceRange: "Medium",
+        days: ["Friday", "Saturday"]
     },
-    { 
-        name: "Cocktail Haven", 
-        location: "east", 
-        startTime: "16:00", 
-        endTime: "18:00", 
-        drinks: ["Cocktails"],
-        priceRange: "medium",
-        address: "789 East Road, Springfield" 
-    },
-    { 
-        name: "Happy Tap", 
-        location: "south", 
-        startTime: "19:00", 
-        endTime: "21:00", 
-        drinks: ["Beer"],
-        priceRange: "low",
-        address: "321 South Lane, Springfield" 
-    },
-    { 
-        name: "Sunset Lounge", 
-        location: "west", 
-        startTime: "20:00", 
-        endTime: "22:00", 
-        drinks: ["Wine", "Cocktails"],
-        priceRange: "high",
-        address: "654 West Boulevard, Springfield" 
-    }
+    // More bars can be added here
 ];
 
-function filterBars() {
-    const locationFilter = document.getElementById("location").value;
-    const startTimeFilter = document.getElementById("startTime").value;
-    const endTimeFilter = document.getElementById("endTime").value;
-    const drinkFilter = document.getElementById("drink").value;
-    const priceRangeFilter = document.getElementById("priceRange").value;
+// Function to display bars
+function displayBars(bars) {
+    const barList = document.getElementById("bars");
+    barList.innerHTML = ""; // Clear previous list
 
-    const filteredBars = bars.filter(bar => {
-        const matchesLocation = locationFilter === "" || bar.location === locationFilter;
+    bars.forEach(bar => {
+        const barElement = document.createElement("li");
+        barElement.setAttribute("data-days", bar.days.join(","));
 
-        const matchesStartTime =
-            startTimeFilter === "" || 
-            bar.startTime >= startTimeFilter;
-
-        const matchesEndTime =
-            endTimeFilter === "" || 
-            bar.endTime <= endTimeFilter;
-
-        const matchesDrink = drinkFilter === "" || bar.drinks.includes(drinkFilter);
-
-        const matchesPriceRange = priceRangeFilter === "" || bar.priceRange === priceRangeFilter;
-
-        return matchesLocation && matchesStartTime && matchesEndTime && matchesDrink && matchesPriceRange;
-    });
-
-    displayBars(filteredBars);
-}
-
-function displayBars(barList) {
-    const barListElement = document.getElementById("bars");
-    barListElement.innerHTML = "";
-
-    if (barList.length === 0) {
-        barListElement.innerHTML = "<li>No bars found.</li>";
-        return;
-    }
-
-    barList.forEach(bar => {
-        const li = document.createElement("li");
-        li.innerHTML = `
+        barElement.innerHTML = `
             <strong>${bar.name}</strong><br>
-            Location: ${bar.location.charAt(0).toUpperCase() + bar.location.slice(1)}<br>
+            Location: ${bar.location}<br>
             Address: ${bar.address}<br>
-            Happy Hour: ${bar.startTime} - ${bar.endTime}<br>
+            Happy Hour: ${bar.happyHourStart} - ${bar.happyHourEnd}<br>
             Drinks: ${bar.drinks.join(", ")}<br>
-            Price Range: ${bar.priceRange.charAt(0).toUpperCase() + bar.priceRange.slice(1)}
+            Price Range: ${bar.priceRange}<br>
+            Days: ${bar.days.join(", ")}
         `;
-        barListElement.appendChild(li);
+
+        barList.appendChild(barElement);
     });
 }
 
-// Event listener for filtering
-document.getElementById("filterButton").addEventListener("click", filterBars);
+// Filter and display the bars based on selected filters
+document.getElementById("filterButton").addEventListener("click", function() {
+    let locationFilter = document.getElementById("location").value;
+    let startTimeFilter = document.getElementById("startTime").value;
+    let endTimeFilter = document.getElementById("endTime").value;
+    let drinkFilter = document.getElementById("drink").value;
+    let priceRangeFilter = document.getElementById("priceRange").value;
+    
+    // Get all selected days
+    let daysFilter = Array.from(document.querySelectorAll(".day:checked")).map(input => input.value);
 
-// Populate the bar list on initial page load
-displayBars(bars);
+    // Filter bars based on selected filters
+    let filteredBars = barsData.filter(bar => {
+        let showBar = true;
+
+        // Filter by location
+        if (locationFilter && bar.location !== locationFilter) {
+            showBar = false;
+        }
+
+        // Filter by start time
+        if (startTimeFilter && bar.happyHourStart !== startTimeFilter) {
+            showBar = false;
+        }
+
+        // Filter by end time
+        if (endTimeFilter && bar.happyHourEnd !== endTimeFilter) {
+            showBar = false;
+        }
+
+        // Filter by drink type
+        if (drinkFilter && !bar.drinks.includes(drinkFilter)) {
+            showBar = false;
+        }
+
+        // Filter by price range
+        if (priceRangeFilter && bar.priceRange !== priceRangeFilter) {
+            showBar = false;
+        }
+
+        // Filter by days
+        if (daysFilter.length > 0) {
+            let daysMatch = daysFilter.some(day => bar.days.includes(day));
+            if (!daysMatch) {
+                showBar = false;
+            }
+        }
+
+        return showBar;
+    });
+
+    // Display the filtered bars
+    displayBars(filteredBars);
+});
+
+// Initial display of all bars when page loads
+window.onload = function() {
+    displayBars(barsData);
+};
