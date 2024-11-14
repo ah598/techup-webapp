@@ -4,116 +4,211 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Thirst Trap</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Your custom CSS -->
     <link rel="stylesheet" href="style.css">
+    
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Arapey:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Faculty+Glyphic&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Faculty+Glyphic&family=Host+Grotesk:wght@300..800&family=Mansalva&display=swap" rel="stylesheet">
+
+    <!-- Add Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
-<body>
-    <header>
-        <h1>THIRST TRAP</h1>
-        <h2>For when you're thirsty but broke</h2>
-    </header>
-    <main>
-        <section id="filters">
-            <h3>Hunt for your Happy Hour here:</h3>
+<body class="bg-light">
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">About</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 
-            <!-- Location Filter -->
-            <label for="location">Location:</label>
-            <select id="location">
-                <option value="">All</option>
-                <option value="north">North</option>
-                <option value="south">South</option>
-                <option value="east">East</option>
-                <option value="west">West</option>
-                <option value="central">Central</option>
-            </select>
+    <div class="container-fluid py-2">
+        <!-- Header Section -->
+        <header class="text-center mb-4">
+            <div class="container">
+                <div class="row justify-content-center align-items-center">
+                    <!-- Text on left side -->
+                    <div class="col-md-6 text-md-end pe-md-4">
+                        <div class="header-text-wrapper">
+                            <h1 class="display-4 fw-bold mb-2" a href ="about.html">THIRST TRAP</h1>
+                        </div>
+                    </div>
+                    <!-- Logo on right side -->
+                    <div class="col-md-6 ps-md-4">
+                        <div class="header-illustration">
+                            <img src="assets/images/logo.svg" alt="Thirst Trap Illustration" class="header-logo">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
 
-            <!-- Starting Happy Hour Time Filter -->
-            <label for="startTime">Starting Happy Hour Time:</label>
-            <select id="startTime">
-                <option value="">Any</option>
-                <option value="12:00">12:00 PM</option>
-                <option value="13:00">1:00 PM</option>
-                <option value="14:00">2:00 PM</option>
-                <option value="15:00">3:00 PM</option>
-                <option value="16:00">4:00 PM</option>
-                <option value="17:00">5:00 PM</option>
-                <option value="18:00">6:00 PM</option>
-                <option value="19:00">7:00 PM</option>
-                <option value="20:00">8:00 PM</option>
-                <option value="21:00">9:00 PM</option>
-            </select>
+        <main>
+            <!-- Filter Section -->
+            <section class="filter-section mb-4">
+                <div class="container">
+                    <div class="card filter-card">
+                        <div class="card-body p-3">
+                            <div class="row g-2">
+                                <!-- Location Filter -->
+                                <div class="col-md-3">
+                                    <label for="location" class="form-label small mb-1">Location</label>
+                                    <select id="location" class="form-select form-select-sm">
+                                        <option value="">All Locations</option>
+                                        <option value="north">North</option>
+                                        <option value="south">South</option>
+                                        <option value="east">East</option>
+                                        <option value="west">West</option>
+                                        <option value="central">Central</option>
+                                    </select>
+                                </div>
 
-            <!-- Ending Happy Hour Time Filter -->
-            <label for="endTime">Ending Happy Hour Time:</label>
-            <select id="endTime">
-                <option value="">Any</option>
-                <option value="18:00">6:00 PM</option>
-                <option value="19:00">7:00 PM</option>
-                <option value="20:00">8:00 PM</option>
-                <option value="21:00">9:00 PM</option>
-                <option value="22:00">10:00 PM</option>
-                <option value="23:00">11:00 PM</option>
-                <option value="00:00">12:00 AM</option>
-                <option value="01:00">1:00 AM</option>
-            </select>
+                                <!-- Drink Type Filter -->
+                                <div class="col-md-3">
+                                    <label for="drink" class="form-label small mb-1">Drink Type</label>
+                                    <select id="drink" class="form-select form-select-sm">
+                                        <option value="">All Drinks</option>
+                                        <option value="beers">Beers</option>
+                                        <option value="cocktails">Cocktails</option>
+                                        <option value="wines">Wines</option>
+                                        <option value="spirits">Spirits</option>
+                                    </select>
+                                </div>
+                
+                                <!-- Start Time Filter -->
+                                <div class="col-md-3">
+                                    <label for="startTime" class="form-label small mb-1">Starting From</label>
+                                    <select id="startTime" class="form-select form-select-sm">
+                                        <option value="">Any</option>
+                                        <option value="11:00">11am</option>
+                                        <option value="12:00">12pm</option>
+                                        <option value="13:00">1pm</option>
+                                        <option value="14:00">2pm</option>
+                                        <option value="15:00">3pm</option>
+                                        <option value="16:00">4pm</option>
+                                        <option value="17:00">5pm</option>
+                                        <option value="18:00">6pm</option>
+                                        <option value="19:00">7pm</option>
+                                        <option value="20:00">8pm</option>
+                                        <option value="21:00">9pm</option>
+                                    </select>
+                                </div>
 
-            <!-- Drink Type Filter -->
-            <label for="drink">Drink Type:</label>
-            <select id="drink">
-                <option value="">All</option>
-                <option value="beers">Beers</option>
-                <option value="cocktails">Cocktails</option>
-                <option value="wines">Wines</option>
-                <option value="spirits">Spirits</option>
-            </select>
+                                <!-- End Time Filter -->
+                                <div class="col-md-3">
+                                    <label for="endTime" class="form-label small mb-1">Available Until</label>
+                                    <select id="endTime" class="form-select form-select-sm">
+                                        <option value="">Any</option>
+                                        <option value="18:00">6pm</option>
+                                        <option value="19:00">7pm</option>
+                                        <option value="20:00">8pm</option>
+                                        <option value="21:00">9pm</option>
+                                        <option value="22:00">10pm</option>
+                                        <option value="23:00">11pm</option>
+                                    </select>
+                                </div>
 
-            <!-- Price Range Filter -->
-            <label for="priceRange">Price Range:</label>
-            <select id="priceRange">
-                <option value="">Any</option>
-                <option value="low">Low (Less than $15 per drink)</option>
-                <option value="medium">Medium ($15-$20 per drink)</option>
-                <option value="high">High (More than $20 per drink)</option>
-            </select>
+                                <!-- Price Range Filter -->
+                                <div class="col-md-3">
+                                    <label class="form-label small mb-1">Price Range</label>
+                                    <div class="price-range-wrapper">
+                                        <div class="range-values">
+                                            <span id="minPrice">$5</span> - <span id="maxPrice">$25</span>
+                                        </div>
+                                        <div class="range-slider">
+                                            <input type="range" 
+                                                   id="priceMin" 
+                                                   class="price-range" 
+                                                   min="5" 
+                                                   max="30" 
+                                                   value="5" 
+                                                   step="1">
+                                            <input type="range" 
+                                                   id="priceMax" 
+                                                   class="price-range" 
+                                                   min="5" 
+                                                   max="30" 
+                                                   value="30" 
+                                                   step="1">
+                                        </div>
+                                    </div>
+                                </div>
 
-            <!-- Days Filter -->
-            <fieldset>
-                <legend>Days Available:</legend><br> 
-                <label><input type="checkbox" value="Monday" class="day"> Monday</label><br>
-                <label><input type="checkbox" value="Tuesday" class="day"> Tuesday</label><br>
-                <label><input type="checkbox" value="Wednesday" class="day"> Wednesday</label><br>
-                <label><input type="checkbox" value="Thursday" class="day"> Thursday</label><br>
-                <label><input type="checkbox" value="Friday" class="day"> Friday</label><br>
-                <label><input type="checkbox" value="Saturday" class="day"> Saturday</label><br>
-                <label><input type="checkbox" value="Sunday" class="day"> Sunday</label><br>
-            </fieldset>
+                                <!-- Days Filter -->
+                                <div class="col-md-6">
+                                    <label class="form-label small mb-1">Days Available</label>
+                                    <div class="days-container">
+                                        <div class="form-check form-check-inline m-0">
+                                            <input type="checkbox" class="form-check-input day" id="monday" value="Monday">
+                                            <label class="form-check-label small" for="monday">Mon</label>
+                                        </div>
+                                        <div class="form-check form-check-inline m-0">
+                                            <input type="checkbox" class="form-check-input day" id="tuesday" value="Tuesday">
+                                            <label class="form-check-label small" for="tuesday">Tue</label>
+                                        </div>
+                                        <div class="form-check form-check-inline m-0">
+                                            <input type="checkbox" class="form-check-input day" id="wednesday" value="Wednesday">
+                                            <label class="form-check-label small" for="wednesday">Wed</label>
+                                        </div>
+                                        <div class="form-check form-check-inline m-0">
+                                            <input type="checkbox" class="form-check-input day" id="thursday" value="Thursday">
+                                            <label class="form-check-label small" for="thursday">Thu</label>
+                                        </div>
+                                        <div class="form-check form-check-inline m-0">
+                                            <input type="checkbox" class="form-check-input day" id="friday" value="Friday">
+                                            <label class="form-check-label small" for="friday">Fri</label>
+                                        </div>
+                                        <div class="form-check form-check-inline m-0">
+                                            <input type="checkbox" class="form-check-input day" id="saturday" value="Saturday">
+                                            <label class="form-check-label small" for="saturday">Sat</label>
+                                        </div>
+                                        <div class="form-check form-check-inline m-0">
+                                            <input type="checkbox" class="form-check-input day" id="sunday" value="Sunday">
+                                            <label class="form-check-label small" for="sunday">Sun</label>
+                                        </div>
+                                    </div>
+                                </div>
 
-            <button id="filterButton">Filter</button>
-            <!-- Add this new reset button -->
-            <button id="resetButton">Reset Filters</button>
-        </section>
+                                <!-- Filter Buttons -->
+                                <div class="col-md-3 d-flex align-items-end">
+                                    <div class="d-flex gap-2 w-100">
+                                        <button id="filterButton" class="btn btn-custom-primary btn-sm flex-grow-1">Search</button>
+                                        <button id="resetButton" class="btn btn-custom-secondary btn-sm flex-grow-1">Reset</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
-        <section id="bar-list">
-            <ul id="bars">
-                <!-- Sample Bars -->
-                <li data-days="Monday,Tuesday,Wednesday">
-                    <h4>Sample Bar 1</h4><br> 
-                        <strong>Location:</strong> Central<br>
-                        <strong>Address:</strong> 123 Example Street<br>
-                        <strong>Happy Hour:</strong> 16:00 - 18:00<br>
-                        <strong>Days: </strong>Monday, Tuesday, Wednesday <br>
-                        <strong>Drinks: </strong>Beers, Cocktails<br>
-                        <strong>Price Range:</strong> Low<br>
-                </li>
-                <li data-days="Friday,Saturday">
-                    <strong>Sample Bar 2</strong><br>Location: East<br>Address: 456 Sample Rd.<br>Happy Hour: 18:00 - 20:00<br>Drinks: Cocktails, Wine<br>Price Range: Medium<br>Days: Friday, Saturday
-                </li>
-                <!-- More bars can be added here -->
-            </ul>
-        </section>
-    </main>
+            <!-- Bar List Section -->
+            <section class="container">
+                <div class="row row-cols-1 row-cols-md-3 g-4" id="bars">
+                    <!-- Bars will be populated by JavaScript -->
+                </div>
+            </section>
+        </main>
+    </div>
+
+   
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Your custom JS -->
     <script src="script.js"></script>
 </body>
 </html>

@@ -1,5 +1,18 @@
-// Sample bar data
-// Low (Less than $15 per drink), Medium ($15-$20 per drink), High (More than $20 per drink)
+// Helper Functions
+function formatTime(time24) {
+    const [hours, minutes] = time24.split(':');
+    let hour = parseInt(hours);
+    const ampm = hour >= 12 ? 'pm' : 'am';
+    hour = hour % 12;
+    hour = hour ? hour : 12;
+    return `${hour}${minutes === '00' ? '' : ':' + minutes}${ampm}`;
+}
+
+function capitalizeEachWord(str) {
+    return str.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()).join(' ');
+}
+
+// Bar Data
 const barsData = [
     {
         name: "Lazy Lizard",
@@ -8,7 +21,10 @@ const barsData = [
         happyHourStart: "15:00",
         happyHourEnd: "20:00",
         drinks: ["beers"],
-        priceRange: "low",
+        priceRange: {
+            min: 11,
+            max: 14
+        },
         days: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
     },
     {
@@ -18,7 +34,10 @@ const barsData = [
         happyHourStart: "12:00",
         happyHourEnd: "19:00",
         drinks: ["cocktails", "wines"],
-        priceRange: "low",
+        priceRange: {
+            min: 9,
+            max: 10
+        },
         days: ["Monday", "Tuesday", "Wednesday", "Thursday"]
     },
     {
@@ -28,7 +47,10 @@ const barsData = [
         happyHourStart: "17:00",
         happyHourEnd: "19:00",
         drinks: ["cocktails", "wines", "beers"],
-        priceRange: "medium",
+        priceRange: {
+            min: 12,
+            max: 16
+        },
         days: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
     },
     {
@@ -38,17 +60,23 @@ const barsData = [
         happyHourStart: "17:00",
         happyHourEnd: "20:00",
         drinks: ["wines", "beers", "spirits"],
-        priceRange: "medium",
+        priceRange: {
+            min: 10,
+            max: 24
+        },
         days: ["Monday", "Tuesday", "Wednesday", "Thursday"]
     },
     {
         name: "Bones 'n Barrels",
-        location: "West",
+        location: "South",
         address: "438 B Alexandra Road, 01-01 Alexandra Technopark, Block B, 119968",
         happyHourStart: "11:30",
         happyHourEnd: "20:00",
-        drinks: ["wines", "beers", "spirits"],
-        priceRange: "low",
+        drinks: ["wines", "beers"],
+        priceRange: {
+            min: 5,
+            max: 8
+        },
         days: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]
     },
     {
@@ -58,7 +86,10 @@ const barsData = [
         happyHourStart: "12:00",
         happyHourEnd: "20:00",
         drinks: ["beers"],
-        priceRange: "low",
+        priceRange: {
+            min: 10,
+            max: 15
+        },
         days: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
     },
     {
@@ -68,88 +99,189 @@ const barsData = [
         happyHourStart: "17:00",
         happyHourEnd: "19:00",
         drinks: ["beers"],
-        priceRange: "low",
+        priceRange: {
+            min: 10,
+            max: 15
+        },
         days: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]
+    },
+    {
+        name: "Lucha Loco",
+        location: "Central",
+        address: "15 Duxton Hill, Singapore 089598",
+        happyHourStart: "15:00",
+        happyHourEnd: "19:00",
+        drinks: ["cocktails", "beers", "wines", "spirits"],
+        priceRange: {
+            min: 9,
+            max: 10
+        },
+        days: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]
+    },
+    {
+        name: "The Queen and Mangosteen",
+        location: "South",
+        address: "1 HarbourFront Walk, #01-106/107 VivoCity, Singapore 098585",
+        happyHourStart: "15:00",
+        happyHourEnd: "19:00",
+        drinks: ["cocktails", "beers", "wines"],
+        priceRange: {
+            min: 11,
+            max: 13
+        },
+        days: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+    },
+    {
+        name: "BERLIN BAR",
+        location: "West",
+        address: "1 HarbourFront Walk, #01-106/107 VivoCity, Singapore 098585",
+        happyHourStart: "16:00",
+        happyHourEnd: "20:00",
+        drinks: ["beers"],
+        priceRange: {
+            min: 10,
+            max: 15
+        },
+        days: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
     },
 
 ];
 
-// Function to display bars
+// Display Function
 function displayBars(bars) {
-    const barList = document.getElementById("bars");
-    barList.innerHTML = ""; // Clear previous list
+    const barsContainer = document.getElementById('bars');
+    barsContainer.innerHTML = '';
 
     bars.forEach(bar => {
-        const barElement = document.createElement("li");
-        barElement.setAttribute("data-days", bar.days.join(","));
-
-        function capitalizeEachWord(str) {
-            return str
-                .split(" ") // Split the string into words
-                .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()) // Capitalize each word
-                .join(" "); // Rejoin the words into a single string
-        }
-        
-
+        const barElement = document.createElement('div');
+        barElement.className = 'col';
         barElement.innerHTML = `
-            <h4>${bar.name}</h4><br>
-            <p><strong>Address</strong>:  ${(bar.address)} </p><br>
-            <p><strong>Location</strong>:  ${capitalizeEachWord(bar.location)} </p><br>
-            <p><strong>Happy Hour</strong>: ${bar.happyHourStart} - ${bar.happyHourEnd} </p><br>
-            <p><strong>Days</strong>: ${bar.days.join(", ")} </p><br>
-            <p><strong>Drinks</strong>: ${capitalizeEachWord(bar.drinks.join(", "))} </p><br>
-            <p><strong>Price Range</strong>: ${capitalizeEachWord(bar.priceRange)} </p><br>
+            <div class="card h-100">
+                <div class="card-body">
+                    <h4 class="card-title mb-3">${bar.name}</h4>
+                    <ul class="list-unstyled">
+                        <li class="mb-2">
+                            <i class="bi bi-geo-alt me-2"></i>
+                            <strong>Address:</strong> ${bar.address}
+                        </li>
+                        <li class="mb-2">
+                            <i class="bi bi-pin-map me-2"></i>
+                            <strong>Location:</strong> ${capitalizeEachWord(bar.location)}
+                        </li>
+                        <li class="mb-2">
+                            <i class="bi bi-clock me-2"></i>
+                            <strong>Happy Hour:</strong> ${formatTime(bar.happyHourStart)} - ${formatTime(bar.happyHourEnd)}
+                        </li>
+                        <li class="mb-2">
+                            <i class="bi bi-calendar-week me-2"></i>
+                            <strong>Days:</strong> ${bar.days.join(", ")}
+                        </li>
+                        <li class="mb-2">
+                            <i class="bi bi-cup-straw me-2"></i>
+                            <strong>Drinks:</strong> ${capitalizeEachWord(bar.drinks.join(", "))}
+                        </li>
+                        <li>
+                            <i class="bi bi-tag me-2"></i>
+                            <strong>Price Range:</strong> $${bar.priceRange.min} - $${bar.priceRange.max}
+                        </li>
+                    </ul>
+                </div>
+            </div>
         `;
-
-        barList.appendChild(barElement);
+        barsContainer.appendChild(barElement);
     });
 }
 
+// Price Range Slider Functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const minSlider = document.getElementById('priceMin');
+    const maxSlider = document.getElementById('priceMax');
+    const minDisplay = document.getElementById('minPrice');
+    const maxDisplay = document.getElementById('maxPrice');
 
+    function updatePriceDisplay() {
+        minDisplay.textContent = `$${minSlider.value}`;
+        maxDisplay.textContent = `$${maxSlider.value}`;
+    }
 
-// Filter and display the bars based on selected filters
+    function handleSliderChange(e) {
+        let minVal = parseInt(minSlider.value);
+        let maxVal = parseInt(maxSlider.value);
+
+        if (maxVal < minVal + 2) {
+            if (e.target === minSlider) {
+                maxSlider.value = minVal + 2;
+            } else {
+                minSlider.value = maxVal - 2;
+            }
+        }
+
+        updatePriceDisplay();
+    }
+
+    minSlider.addEventListener('input', handleSliderChange);
+    maxSlider.addEventListener('input', handleSliderChange);
+});
+
+// Filter Button Event Listener
 document.getElementById("filterButton").addEventListener("click", function() {
-    let locationFilter = document.getElementById("location").value;
-    let startTimeFilter = document.getElementById("startTime").value;
-    let endTimeFilter = document.getElementById("endTime").value;
-    let drinkFilter = document.getElementById("drink").value;
-    let priceRangeFilter = document.getElementById("priceRange").value;
+    const locationFilter = document.getElementById("location").value;
+    const startTimeFilter = document.getElementById("startTime").value;
+    const endTimeFilter = document.getElementById("endTime").value;
+    const drinkFilter = document.getElementById("drink").value;
+    const minPrice = parseInt(document.getElementById("priceMin").value);
+    const maxPrice = parseInt(document.getElementById("priceMax").value);
     
-    // Get all selected days
-    let daysFilter = Array.from(document.querySelectorAll(".day:checked")).map(input => input.value);
+    const daysFilter = Array.from(document.querySelectorAll(".day:checked")).map(checkbox => checkbox.value);
 
-    // Filter bars based on selected filters
     let filteredBars = barsData.filter(bar => {
         let showBar = true;
 
-        // Filter by location
-        if (locationFilter && bar.location !== locationFilter) {
+        // Location filter
+        if (locationFilter && bar.location.toLowerCase() !== locationFilter.toLowerCase()) {
             showBar = false;
         }
 
-        // Filter by start time
-        if (startTimeFilter && bar.happyHourStart !== startTimeFilter) {
+        // Time filters
+        if (startTimeFilter || endTimeFilter) {
+            const getMinutes = (timeStr) => {
+                const [hours, minutes] = timeStr.split(':').map(Number);
+                return hours * 60 + minutes;
+            };
+
+            const barStartMins = getMinutes(bar.happyHourStart);
+            const barEndMins = getMinutes(bar.happyHourEnd);
+
+            if (startTimeFilter) {
+                const filterStartMins = getMinutes(startTimeFilter);
+                if (barStartMins > filterStartMins) {
+                    showBar = false;
+                }
+            }
+
+            if (endTimeFilter) {
+                const filterEndMins = getMinutes(endTimeFilter);
+                if (barEndMins < filterEndMins) {
+                    showBar = false;
+                }
+            }
+        }
+
+        // Drink filter
+        if (drinkFilter && !bar.drinks.includes(drinkFilter.toLowerCase())) {
             showBar = false;
         }
 
-        // Filter by end time
-        if (endTimeFilter && bar.happyHourEnd !== endTimeFilter) {
-            showBar = false;
+        // Price range filter
+        if (minPrice && maxPrice) {
+            if (bar.priceRange.max < minPrice || bar.priceRange.min > maxPrice) {
+                showBar = false;
+            }
         }
 
-        // Filter by drink type
-        if (drinkFilter && !bar.drinks.includes(drinkFilter)) {
-            showBar = false;
-        }
-
-        // Filter by price range
-        if (priceRangeFilter && bar.priceRange !== priceRangeFilter) {
-            showBar = false;
-        }
-
-        // Filter by days
+        // Days filter
         if (daysFilter.length > 0) {
-            let daysMatch = daysFilter.some(day => bar.days.includes(day));
+            let daysMatch = daysFilter.every(selectedDay => bar.days.includes(selectedDay));
             if (!daysMatch) {
                 showBar = false;
             }
@@ -158,29 +290,24 @@ document.getElementById("filterButton").addEventListener("click", function() {
         return showBar;
     });
 
-    
-    // Display the filtered bars
     displayBars(filteredBars);
 });
 
-
-
-// Initial display of all bars when page loads
-window.onload = function() {
-    displayBars(barsData);
-};
-
-
-// **NEW CODE**: Reset filters and display all bars
-document.getElementById("resetButton").addEventListener("click", function () {
-    // Clear all dropdowns
+// Reset Button Event Listener
+document.getElementById("resetButton").addEventListener("click", function() {
+    // Reset dropdowns
     document.getElementById("location").value = "";
     document.getElementById("startTime").value = "";
     document.getElementById("endTime").value = "";
     document.getElementById("drink").value = "";
-    document.getElementById("priceRange").value = "";
+    
+    // Reset price range sliders
+    document.getElementById("priceMin").value = 5;
+    document.getElementById("priceMax").value = 30;
+    document.getElementById("minPrice").textContent = "$5";
+    document.getElementById("maxPrice").textContent = "$30";
 
-    // Uncheck all days
+    // Reset checkboxes
     document.querySelectorAll(".day").forEach(dayCheckbox => {
         dayCheckbox.checked = false;
     });
@@ -188,3 +315,8 @@ document.getElementById("resetButton").addEventListener("click", function () {
     // Display all bars
     displayBars(barsData);
 });
+
+// Initial display of all bars
+window.onload = function() {
+    displayBars(barsData);
+};
